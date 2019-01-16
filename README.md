@@ -19,7 +19,7 @@
 
 "/" = divide
 
-operators ">" , "<", "==" are working for comparing to BigNumbers
+operators ">" , "<", "==" are working for comparing two BigNumbers
 
 **thats all**
 
