@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <cstring>
+#include <vector>
 
 using namespace std;
 
@@ -16,9 +17,10 @@ private:
         else return b;
     }
 
-    BigNumber addSum(BigNumber nr1, int nr2[10000])
+    BigNumber addSum(BigNumber nr1, vector<int> nr2)
     {
         BigNumber sum;
+        sum.setSize(100005);
         int maxx = Xmax(nr1.data[0], nr2[0]);
         int t = 0;
         for(int i = 1; i <= maxx; ++i)
@@ -34,7 +36,7 @@ private:
         return sum;
     }
 
-    BigNumber dif(BigNumber nr1, int nr2[10000])
+    BigNumber dif(BigNumber nr1, vector<int> nr2)
     {
         BigNumber aux = nr1;
         for(int i = 1; i <= nr1.data[0]; ++i)
@@ -59,6 +61,7 @@ private:
     BigNumber inmultire(BigNumber a, BigNumber b)
     {
         BigNumber rez;
+        rez.setSize(100005);
         rez.data[0] = a.data[0] + b.data[0] - 1;
         for(int i = 1; i <= a.data[0] + b.data[0]; ++i)
             rez.data[i] = 0;
@@ -76,7 +79,7 @@ private:
 
         return rez;
     }
-    BigNumber divide(int a[10005], long long b)
+    BigNumber divide(vector<int> a, long long b)
     {
         int r = 0;
         for(int i = a[0]; i >= 1; --i)
@@ -88,6 +91,7 @@ private:
             a[0]--;
 
         BigNumber rez;
+        rez.setSize(100005);
 
         for(int i = 1; i <= a[0]; ++i)
             rez.data[i] = a[i];
@@ -97,7 +101,11 @@ private:
     }
 
 public:
-    int data[10000];
+    vector<int> data;
+    void setSize(int val){
+        for(int i = 0; i <= val; ++i)
+            data.push_back(0);
+    }
     BigNumber operator+(const BigNumber& a)
     {
         BigNumber rez = addSum(a, this->data);
@@ -130,6 +138,7 @@ public:
     BigNumber operator^(long long a)
     {
         BigNumber rez;
+        rez.setSize(1000000);
         for(int i = 1; i <= this->data[0]; ++i)
             rez.data[i] = this->data[i];
         rez.data[0] = this->data[0];
