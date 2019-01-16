@@ -1,4 +1,4 @@
-  #ifndef BIGNUMBER_H_INCLUDED
+#ifndef BIGNUMBER_H_INCLUDED
 #define BIGNUMBER_H_INCLUDED
 
 #include <iostream>
@@ -34,7 +34,8 @@ private:
         return sum;
     }
 
-    BigNumber dif(BigNumber nr1, int nr2[10000]){
+    BigNumber dif(BigNumber nr1, int nr2[10000])
+    {
         BigNumber aux = nr1;
         for(int i = 1; i <= nr1.data[0]; ++i)
             nr1.data[i] = 0;
@@ -55,7 +56,8 @@ private:
             nr1.data[0]--;
         return nr1;
     }
-    BigNumber inmultire(BigNumber a, BigNumber b){
+    BigNumber inmultire(BigNumber a, BigNumber b)
+    {
         BigNumber rez;
         rez.data[0] = a.data[0] + b.data[0] - 1;
         for(int i = 1; i <= a.data[0] + b.data[0]; ++i)
@@ -74,9 +76,11 @@ private:
 
         return rez;
     }
-    BigNumber divide(int a[10005], long long b){
+    BigNumber divide(int a[10005], long long b)
+    {
         int r = 0;
-        for(int i = a[0]; i >= 1; --i){
+        for(int i = a[0]; i >= 1; --i)
+        {
             a[i] = (r = 10 * r + a[i]) / b;
             r %= b;
         }
@@ -99,26 +103,32 @@ public:
         BigNumber rez = addSum(a, this->data);
         return rez;
     }
-    BigNumber operator-(const BigNumber& a){
+    BigNumber operator-(const BigNumber& a)
+    {
         BigNumber rez;
         rez = dif(a, this->data);
         return rez;
     }
-    BigNumber& operator=(int a){
-        while(a){
+    BigNumber& operator=(int a)
+    {
+        while(a)
+        {
             data[++data[0]] = a % 10;
             a /= 10;
         }
         return *this;
     }
-    BigNumber& operator=(long long a){
-        while(a){
+    BigNumber& operator=(long long a)
+    {
+        while(a)
+        {
             data[++data[0]] = a % 10;
             a /= 10;
         }
         return *this;
     }
-    BigNumber operator^(long long a){
+    BigNumber operator^(long long a)
+    {
         BigNumber rez;
         for(int i = 1; i <= this->data[0]; ++i)
             rez.data[i] = this->data[i];
@@ -129,7 +139,8 @@ public:
             rez = inmultire(rez, copie);
         return rez;
     }
-    BigNumber operator/(long long a){
+    BigNumber operator/(long long a)
+    {
         BigNumber rez = divide(this->data, a);
         return rez;
     }
@@ -149,9 +160,94 @@ void read(BigNumber &x)
     x.data[0] = lg;
 }
 
-void print(BigNumber x){
+void print(BigNumber x)
+{
     for(int i = x.data[0]; i >= 1; --i)
         cout << x.data[i];
 }
+
+bool operator>(BigNumber a, BigNumber b)
+{
+    if(a.data[0] > b.data[0])
+        return true;
+    if(a.data[0] < b.data[0])
+        return false;
+    short who = -1;
+    for(int i = a.data[0]; i >= 1; --i)
+    {
+        if(a.data[i] == b.data[i])
+            continue;
+        if(a.data[i] > b.data[i])
+        {
+            who = 1;
+            break;
+        }
+        else
+        {
+            who = 2;
+            break;
+        }
+    }
+
+    if(who == -1 || who == 2)
+        return false;
+    return true;
+}
+
+bool operator<(BigNumber a, BigNumber b)
+{
+    if(a.data[0] > b.data[0])
+        return false;
+    if(a.data[0] < b.data[0])
+        return true;
+    short who = -1;
+    for(int i = a.data[0]; i >= 1; --i)
+    {
+        if(a.data[i] == b.data[i])
+            continue;
+        if(a.data[i] > b.data[i])
+        {
+            who = 2;
+            break;
+        }
+        else
+        {
+            who = 1;
+            break;
+        }
+    }
+
+    if(who == -1 || who == 1)
+        return false;
+    return true;
+}
+
+bool operator==(BigNumber a, BigNumber b){
+    if(a.data[0] > b.data[0])
+        return false;
+    if(a.data[0] < b.data[0])
+        return false;
+    short who = -1;
+    for(int i = a.data[0]; i >= 1; --i)
+    {
+        if(a.data[i] == b.data[i])
+            continue;
+        if(a.data[i] > b.data[i])
+        {
+            who = 2;
+            break;
+        }
+        else
+        {
+            who = 1;
+            break;
+        }
+    }
+
+    if(who == 2 || who == 1)
+        return false;
+    return true;
+}
+
 
 #endif
