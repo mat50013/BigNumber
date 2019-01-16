@@ -13,11 +13,11 @@
 
 "^" = its like the pow() function(2 ^ 10 = 1024, the base can be a BigNumber but the exponent must be a long long or a int)
 
-"+" = make the sum
+"+" = make the sum(two BigNumber)
 
 "-" = make the diference(must be pozitive)
 
-"/" = divide
+"/" = divide(a BigNumber with normal interger)
 
 operators ">" , "<", "==" are working for comparing two BigNumbers
 
