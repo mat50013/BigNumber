@@ -5,7 +5,7 @@
 
 **Limits**
 
-->Numbers can have maximum 10000 of digits
+->You can set your limit with the .setSize function
 
 **Operators working**
 
