@@ -26,3 +26,4 @@
 ### ToDO
 
 -> add sqrt function
+-> make the operators ">" , "<", "==" to work
