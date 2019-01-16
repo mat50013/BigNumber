@@ -19,6 +19,8 @@
 
 "/" = divide
 
+operators ">" , "<", "==" are working for comparing to BigNumbers
+
 **thats all**
 
 **new thinks coming soon**
@@ -26,5 +28,3 @@
 ### ToDO
 
 -> add sqrt function
-
--> make the operators ">" , "<", "==" to work
